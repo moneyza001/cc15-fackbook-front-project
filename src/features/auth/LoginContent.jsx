@@ -9,7 +9,7 @@ export default function LoginContent() {
                         alt="fakebook-logo"
                     />
                 </div>
-                <h2 className="text-2xl font-medium text-center min-[900px]:text-left leading-7 min-[1075px]:text-[1.75rem] min-[1075px]:w-[31.25rem]">
+                <h2 className="text-2xl font-normal text-center min-[900px]:text-left leading-7 min-[1075px]:text-[1.75rem] min-[1075px]:w-[31.25rem]">
                     Fakebook helps you connect and share with the people in your
                     life.
                 </h2>

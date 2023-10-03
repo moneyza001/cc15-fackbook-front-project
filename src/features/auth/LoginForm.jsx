@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import LoginButton from "./LoginButton";
 import LoginInput from "./LoginInput";
 import axios from "../../config/axios";
@@ -14,7 +15,9 @@ export default function LoginForm() {
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        login(input);
+        login(input).catch((error) => {
+            toast(error.response.data.message);
+        });
     };
 
     return (
