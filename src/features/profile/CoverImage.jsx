@@ -1,5 +1,5 @@
 import defaultImage from "../../assets/cover.jpg";
 
-export default function CoverImage({ src = defaultImage }) {
-    return <img src={src} alt="cover" />;
+export default function CoverImage({ src }) {
+    return <img src={src || defaultImage} alt="cover" />;
 }
