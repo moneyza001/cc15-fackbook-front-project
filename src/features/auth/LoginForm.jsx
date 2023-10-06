@@ -2,7 +2,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import LoginButton from "./LoginButton";
 import LoginInput from "./LoginInput";
-import axios from "../../config/axios";
 import { useAuth } from "../../hook/use-auth";
 
 export default function LoginForm() {

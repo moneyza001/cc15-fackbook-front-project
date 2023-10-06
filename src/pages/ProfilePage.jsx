@@ -8,31 +8,42 @@ import { useAuth } from "../hook/use-auth";
 
 export default function ProfilePage() {
     const [profileUser, setProfileUser] = useState({});
+    const [statusWithAuthUser, setStatusWithAuthUser] = useState("");
+    const [profileFriends, setProfileFriends] = useState([]);
     const { profileId } = useParams();
 
     const { authUser } = useAuth();
-
+    const isAuthUser = authUser.id === +profileId;
     useEffect(() => {
-        if (authUser.id === +profileId) {
-            setProfileUser(authUser);
-        } else {
-            axios
-                .get(`/user/${profileId}`)
-                .then((res) => {
-                    setProfileUser(res.data.user);
-                })
-                .catch((err) => {
-                    toast(err.message);
-                });
-        }
-    }, [profileId, authUser]);
+        axios
+            .get(`/user/${profileId}`)
+            .then((res) => {
+                setProfileUser(res.data.user);
+                setStatusWithAuthUser(res.data.status);
+                setProfileFriends(res.data.friends);
+            })
+            .catch((err) => {
+                toast(err.message);
+            });
+    }, [profileId]);
 
     return (
         <div className="shadow pb-6 bg-gradient-to-b from-gray-400 to-white">
             {profileUser ? (
                 <>
-                    <ProfileCover coverImage={profileUser?.coverImage} />
-                    <ProfileInfo profileUser={profileUser} />
+                    <ProfileCover
+                        coverImage={
+                            isAuthUser
+                                ? authUser.coverImage
+                                : profileUser?.coverImage
+                        }
+                    />
+                    <ProfileInfo
+                        profileUser={isAuthUser ? authUser : profileUser}
+                        statusWithAuthUser={statusWithAuthUser}
+                        setStatusWithAuthUser={setStatusWithAuthUser}
+                        profileFriends={profileFriends}
+                    />
                 </>
             ) : (
                 <h1 className="text-center p-8 text-3xl font-bold">
