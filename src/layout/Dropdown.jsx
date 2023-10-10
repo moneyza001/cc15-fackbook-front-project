@@ -1,26 +1,13 @@
 import Avatar from "../components/Avatar";
 import { Link } from "react-router-dom";
 import { RightFromBracketIcon } from "../icons";
-import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../hook/use-auth";
+import useDropdown from "../hook/use-dropdown";
 
 export default function Dropdown() {
-    const [isOpen, setIsOpen] = useState(false);
+    const { dropDownEl, isOpen, setIsOpen } = useDropdown();
 
-    const dropDownEl = useRef(null);
     const { logout, authUser } = useAuth();
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (!dropDownEl.current.contains(event.target)) {
-                setIsOpen(false);
-            }
-        };
-        document.addEventListener("click", handleClickOutside);
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, []);
 
     return (
         <div className="relative" ref={dropDownEl}>

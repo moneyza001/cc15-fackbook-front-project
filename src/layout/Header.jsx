@@ -5,7 +5,7 @@ import Dropdown from "./Dropdown";
 
 export default function Header() {
     return (
-        <header className="grid grid-cols-3 px-4 shadow-lg static top-0 bg-white">
+        <header className="grid grid-cols-3 px-4 shadow-lg sticky top-0 bg-white z-30">
             <div className="py-2 justify-self-start ">
                 <Link to="/">
                     <FacebookIcon />
